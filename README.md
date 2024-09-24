@@ -1,2 +1,2 @@
-# Haskell
+# Haskell >λ=
 My Haskell learning 
