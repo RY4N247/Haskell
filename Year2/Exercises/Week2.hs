@@ -4,17 +4,19 @@
 --(a) a checkSum function that takes input a, b and c evaluating to true when a + b = c
   
 checkSum :: Int -> Int -> Int -> Bool
-checkSum = undefined
+checkSum a b c = a + b == c
 
 --(b) Define a function notdivisible::Int -> Int -> Bool that evaluates to True on input a and b if and only if a is not divisible by b.
  
 notDivisible :: Int -> Int -> Bool
-notDivisible = undefined
+notDivisible a b = not (a `mod` b == 0)
 
 --2) Define evenFactorial which, for a value n, multiplies all of the even numbers less than or equal to n. For example evenFactorial 6 should return 6*4*2.
 
 evenFactorial :: Int -> Int
-evenFactorial n = undefined
+evenFactorial n | n == 0 = 1
+                | n `mod` 2 == 0 = n * evenFactorial(n-2)
+                | otherwise = evenFactorial(n-1)
 
 
 {-3)
@@ -24,12 +26,15 @@ f(x) = { x/2,    if x is even
 Define this function in Haskell (you may want to use div instead of /). -}
 
 collatz :: Int -> Int 
-collatz n = undefined
+collatz n | n `mod` 2 == 0 = n `div` 2
+          | otherwise = 3*n + 1
 
 --b) The collatz conjecture states that for any integer n repeated application of the collatz function will eventually reduce n to 1. Write a function which will count the number of applications needed to return a value of 1. The first argument should count the number of applications while the second holds the current value of n
 
 collatzApp :: Int -> Int -> Int
-collatzApp c n = undefined
+collatzApp c n | n ==1 = c
+               | otherwise = collatzApp(c +1) (collatz n)
+
 
 --Note. The collatz conjecture has yet to be proven, despite its simple appearance. Here is some code that will return the number of needed applications for every number from 1 to 1000. 
 
@@ -38,23 +43,28 @@ testCollatz = map (collatzApp 0) [1..1000]
 --4) Define fibonnaci, which calculates the nth number of the fibonacci sequence. Challenge: try to avoid using the standard recursive definition. 
 
 fibonacci :: Int -> Int 
-fibonacci = undefined 
+fibonacci 0 = 0
+fibonacci n = n + fibonacci(n-1)
 
 --5) Defined the combinatorial function for numbers n and m given by n!/(m!*(n-m)!), this should return an error if n < m
+factorial :: Int -> Int 
+factorial n | n == 0 = 1
+            | otherwise = n * factorial(n-1)
 
 comb :: Int -> Int -> Int 
-comb = undefined 
+comb n m | n > m = factorial n `div` (factorial m * factorial (n-m))
+         | otherwise = error "error n is less than m"
 
 --6) Define leapYear which returns a String telling the user whhether a supplied year is a leap yer.
 
 leapYear :: Int -> String
-leapYear = undefined
+leapYear year | ((year `mod` 4 == 0) && not (year `mod` 100 == 0)) = "leapyear"
+              | otherwise = "not a leapyear"
 
 --7) Define the function prime which returns True if a given number n is prime. Remember that a number is prime if it is not divisible by any number other than 1 and itself. It may help to define a helper function
 
 prime :: Int -> Bool 
-prime = undefined 
-
+prime = undefined
 --8) Define the function primeFactors which counts the number of prime factors of its input, ie. prime numbers which the input is divisible by (so for example, if the input is prime then primeFactors should return 1)
 
 primeFactors :: Int -> Int
@@ -63,12 +73,12 @@ primeFactors = undefined
 --9) Define the function solveLinear which, given the parameters m and c, will return the solution of the linear equation mx + c = 0
 
 solveLinear :: Double -> Double -> Double
-solveLinear = undefined
+solveLinear m c = (-1.0 * c) / m
 
 --10) Define the function keepOnly which will keep only the first n elements in a list and throw away everything after that. If there are less than n elements in the list then the function should return all of them.
 
 keepOnly :: Int -> [Int] -> [Int]
-keepOnly = undefined
+keepOnly n list = take n list
 
 --11) Define the function intersperse which will merge two lists by alternating elements between them. If one of the lists runs out of elements first then just end with all of the elements of the other one.
 
