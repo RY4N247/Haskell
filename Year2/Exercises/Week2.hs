@@ -62,9 +62,11 @@ leapYear year | ((year `mod` 4 == 0) && not (year `mod` 100 == 0)) = "leapyear"
               | otherwise = "not a leapyear"
 
 --7) Define the function prime which returns True if a given number n is prime. Remember that a number is prime if it is not divisible by any number other than 1 and itself. It may help to define a helper function
+isDivisible:: Int -> Int -> Int 
+isDivisible 
 
 prime :: Int -> Bool 
-prime = undefined
+prime n 
 --8) Define the function primeFactors which counts the number of prime factors of its input, ie. prime numbers which the input is divisible by (so for example, if the input is prime then primeFactors should return 1)
 
 primeFactors :: Int -> Int

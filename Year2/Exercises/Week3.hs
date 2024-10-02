@@ -1,7 +1,10 @@
 --1) Defined the function addOne which adds 1 to each element in a list of integers.
 
 addOne::[Int] -> [Int]
-addOne = undefined
+addOne [] = []
+addOne [x] = [x + 1]
+addOne (x:xs) = (x + 1) : addOne xs
+
 --How many times will addOne be called on the list [1,2,3,4,5]?
 
 
